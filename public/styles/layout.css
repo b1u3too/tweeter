@@ -24,10 +24,17 @@ body {
   align-items: center;
 }
 
+h2 {
+  font-weight: 300;
+}
+
 main {
   width: 90%;
 }
 
+.f-w-bold {
+  font-weight: 600;
+}
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
