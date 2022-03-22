@@ -1,0 +1,47 @@
+
+.tweets article  {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5em auto;
+  font-weight: 600;
+  border: 3px solid #545149;
+  padding: .7em;
+}
+
+.tweets article:hover {
+  box-shadow: .4em .4em #b8b8b8;
+}
+
+.tweets article header, .tweets article footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
+}
+
+.tweets article footer {
+  border-top: 3px solid #545149;
+  font-size: 1rem;
+}
+
+.tweets i {
+  color: #4056A1;
+}
+
+.tweets i:hover {
+  color: #f6c849;
+}
+
+.user-markers {
+  display: flex;
+  align-items: center;
+}
+
+.tweets header > p {
+  color: #868686;
+  font-weight: 600;
+}
+
+.user-markers img {
+  margin-right: 1em;
+}
