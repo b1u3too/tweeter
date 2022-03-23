@@ -1,5 +1,5 @@
 
-.tweets article  {
+#tweets-container article  {
   display: flex;
   flex-direction: column;
   margin: 1.5em auto;
@@ -8,27 +8,27 @@
   padding: .7em;
 }
 
-.tweets article:hover {
+#tweets-container article:hover {
   box-shadow: .4em .4em #b8b8b8;
 }
 
-.tweets article header, .tweets article footer {
+#tweets-container article header, #tweets-container article footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 300;
 }
 
-.tweets article footer {
+#tweets-container article footer {
   border-top: 3px solid #545149;
   font-size: 1rem;
 }
 
-.tweets i {
+#tweets-container i {
   color: #4056A1;
 }
 
-.tweets i:hover {
+#tweets-container i:hover {
   color: #f6c849;
 }
 
@@ -37,7 +37,7 @@
   align-items: center;
 }
 
-.tweets header > p {
+#tweets-container header > p {
   color: #868686;
   font-weight: 600;
 }
