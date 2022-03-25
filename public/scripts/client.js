@@ -66,11 +66,14 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: '/tweets',
-      data: data
+      data: data,
+      success: () => {
+        loadTweets();
+      }
     });
-    //clear text area, reset counter, refresh page if submission accepted
+    //clear text area, reset counter, reload tweetfeed if submission accepted
     $('textarea').val('');
-    $(this).parent().find('.counter').html('140');
-    $('')
+    $('#char-counter').html('140');
+    $('#tweets-container').html('');
   });
 });
