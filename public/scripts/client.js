@@ -46,9 +46,7 @@ $(document).ready(function() {
   //handle submitting a new tweet to server
   $('form').submit(function(event) {
     event.preventDefault();
-
     const newTweet = $('textarea').val();
-    console.log("newTweet is: ", newTweet);
 
     //alert error if empty tweet submitted
     if (newTweet.trim().length === 0) {
@@ -70,8 +68,9 @@ $(document).ready(function() {
       url: '/tweets',
       data: data
     });
-    //clear text area and reset counterif submission accepted
+    //clear text area, reset counter, refresh page if submission accepted
     $('textarea').val('');
     $(this).parent().find('.counter').html('140');
+    $('')
   });
 });
