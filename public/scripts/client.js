@@ -60,13 +60,19 @@ const renderTweets = function(tweets) {
 };
 
 $(document).ready(function() {
-  renderTweets(data);
+  const loadTweets = function() {
+    $.ajax('/tweets', { method: 'GET'})
+      .then((tweetsData) => {
+        renderTweets(tweetsData);
+      })
+  };
 
-  //handle submitting a new tweet
+  loadTweets();
+
+  //handle submitting a new tweet to server
   $('form').submit(function(event) {
     event.preventDefault();
     const data = $(this).serialize();
-    console.log("data is: ", data);
     $.ajax({
       type: 'POST',
       url: '/tweets',
