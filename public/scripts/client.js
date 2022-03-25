@@ -16,7 +16,7 @@ function createTweetElement(tweetData) {
   </header>
   <p>${tweetData.content.text}</p> 
   <footer>
-    <p>${tweetData.created_at}</p>
+    <p>${timeago.format(tweetData.created_at)}</p>
     <div class="icon-buttons">
       <i class="fa-solid fa-flag"></i>
       <i class="fa-solid fa-retweet"></i>
@@ -38,7 +38,7 @@ $(document).ready(function() {
     $.ajax('/tweets', { method: 'GET'})
       .then((tweetsData) => {
         renderTweets(tweetsData);
-      })
+      });
   };
 
   loadTweets();
@@ -46,11 +46,32 @@ $(document).ready(function() {
   //handle submitting a new tweet to server
   $('form').submit(function(event) {
     event.preventDefault();
+
+    const newTweet = $('textarea').val();
+    console.log("newTweet is: ", newTweet);
+
+    //alert error if empty tweet submitted
+    if (newTweet.trim().length === 0) {
+      let err = new Error("Your tweet needs to have at least one character please try again");
+      alert(err.message);
+      return err;
+    }
+    //alert error if too long of a tweet is submitted
+    if (newTweet.length > 140) {
+      let err = new Error("Your tweet needs to be shorter than 140 characters, please try again");
+      alert(err.message);
+      return err;
+    }
+    
     const data = $(this).serialize();
+
     $.ajax({
       type: 'POST',
       url: '/tweets',
       data: data
     });
+    //clear text area and reset counterif submission accepted
+    $('textarea').val('');
+    $(this).parent().find('.counter').html('140');
   });
 });
