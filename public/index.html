@@ -51,6 +51,11 @@
     <!-- Page-specific (main) content here -->
     <main>
       <section class="new-tweet">
+        <div id="error-message"> 
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <p class="error-text"></p>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
         <h2>Compose Tweet</h2>
         <form method="POST" action="/tweets">
           <label for="tweet-text">What are you humming about?</label>
