@@ -42,6 +42,11 @@
   font-weight: 600;
 }
 
+/* if a single word tweet tries to stretch across the whole screen, break it off to fit in the box */
+.tweet-content {
+  word-wrap: break-word;
+}
+
 .user-markers img {
   margin-right: 1em;
 }
