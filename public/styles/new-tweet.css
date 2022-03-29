@@ -5,8 +5,13 @@
   width: 100%;
 }
 
-.new-tweet h2, .new-tweet label {
+.new-tweet h2 {
+  display: none;
+} 
+
+.new-tweet label {
   font-weight: 600;
+  margin-top: 2em;
 }
 
 .new-tweet textarea {
@@ -32,4 +37,19 @@
   outline: none;
   background-color: #4056A1;
   color: #fff;
+}
+
+#error-message {
+  display: flex;
+  width: 95%;
+  justify-content: space-around;
+  align-items: center;
+  padding: .5em;
+  border: solid red 4px;
+  font-weight: bold;
+  color: red;
+}
+
+.error-text {
+  margin: 0em;
 }
