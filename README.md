@@ -16,10 +16,10 @@ This repository is the starter code for the project: Students like me forked and
 ## Action Shots
 
 ### How's it look on mobile?
-!["Mockup shot"]()
+!["Mockup shot"](https://github.com/b1u3too/tweeter/blob/main/docs/shotsnapp-1648782544.014.png)
 
 ### Tweet deal! How does it work?
-!["Tweeting demo"]()
+!["Tweeting demo"](https://github.com/b1u3too/tweeter/blob/main/docs/tweet-demo.gif)
 
 ## Dependencies
 
