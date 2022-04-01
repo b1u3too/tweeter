@@ -77,7 +77,7 @@ $(document).ready(function() {
     }
     //alert error if too long of a tweet is submitted
     if (newTweet.length > 140) {
-      let err = new Error("Your tweet needs to be shorter than 140 characters, please try again");
+      let err = new Error("Your tweet needs to be 140 characters or fewer, please try again");
       showError(err);
       return;
     }
