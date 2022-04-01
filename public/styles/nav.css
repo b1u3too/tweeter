@@ -6,7 +6,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: .75em 1.5em; 
+  padding: 1.5em; 
   z-index: 9;
   position: fixed;
   top: 0px;
