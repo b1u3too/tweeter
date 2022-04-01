@@ -24,12 +24,9 @@ body {
   align-items: center;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
-
 h2 {
   font-weight: 300;
+  color: #fff;
 }
 
 main {
@@ -38,4 +35,33 @@ main {
 
 .f-w-bold {
   font-weight: 600;
+}
+
+/* styles for phone-like viewports */
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: inherit;
+  }
+}
+
+/* styles for desktop monitor size and larger */
+@media only screen and (min-width: 1024px) {
+  body {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 7rem;
+  }
+  nav {
+    background-color: #4056A1;
+  }
+  .new-tweet label {
+    margin-top: 0;
+  }
+  header.user-profile {
+    width: 66%;
+    margin: 4.5rem;
+  }
+  section {
+    margin: 7rem 3rem 5rem;
+  }
 }
