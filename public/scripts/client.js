@@ -36,9 +36,8 @@ function createTweetElement(tweetData) {
 };
 
 const renderTweets = function(tweets) {
-  const tweetRevChronOrder = tweets.reverse();
-  for (const tweet of tweetRevChronOrder) {
-    $('#tweets-container').append(createTweetElement(tweet));
+  for (const tweet of tweets) {
+    $('#tweets-container').prepend(createTweetElement(tweet));
   }
 };
 
