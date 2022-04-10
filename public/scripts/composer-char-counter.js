@@ -7,7 +7,7 @@ $(document).ready(function() {
     const currentLength = $(this).val().length;
     const charsRemaining = maxLength - currentLength;
 
-    counterElement.html(`${charsRemaining}`);
+    counterElement.html(charsRemaining);
 
     if (charsRemaining < 0) {
       counterElement.css({color: 'red'});
