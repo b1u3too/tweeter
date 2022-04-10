@@ -74,13 +74,13 @@ $(document).ready(function() {
 
     //alert error if empty tweet submitted
     if (newTweet.trim().length === 0) {
-      let err = new Error("Your tweet needs to have at least one character please try again");
+      const err = new Error("Your tweet needs to have at least one character please try again");
       showError(err);
       return;
     }
     //alert error if too long of a tweet is submitted
     if (newTweet.length > 140) {
-      let err = new Error("Your tweet needs to be 140 characters or fewer, please try again");
+      const err = new Error("Your tweet needs to be 140 characters or fewer, please try again");
       showError(err);
       return;
     }
