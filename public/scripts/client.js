@@ -15,22 +15,22 @@ const escape = function(str) {
 function createTweetElement(tweetData) {
   return `
   <article>
-  <header>
-    <div class="user-markers">
-      <img src=${tweetData.user.avatars}>
-      <p>${tweetData.user.name}</p>
-    </div>
-    <p>${tweetData.user.handle}</p>
-  </header>
-  <p class="tweet-content">${escape(tweetData.content.text)}</p> 
-  <footer>
-    <p>${timeago.format(tweetData.created_at)}</p>
-    <div class="icon-buttons">
-      <i class="fa-solid fa-flag"></i>
-      <i class="fa-solid fa-retweet"></i>
-      <i class="fa-solid fa-heart"></i>
-    </div>
-  </footer>
+    <header>
+      <div class="user-markers">
+        <img src=${tweetData.user.avatars}>
+        <p>${tweetData.user.name}</p>
+      </div>
+      <p>${tweetData.user.handle}</p>
+    </header>
+    <p class="tweet-content">${escape(tweetData.content.text)}</p> 
+    <footer>
+      <p>${timeago.format(tweetData.created_at)}</p>
+      <div class="icon-buttons">
+        <i class="fa-solid fa-flag"></i>
+        <i class="fa-solid fa-retweet"></i>
+        <i class="fa-solid fa-heart"></i>
+      </div>
+    </footer>
   </article>
   `
 };
