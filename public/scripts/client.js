@@ -59,6 +59,9 @@ $(document).ready(function() {
     $.ajax('/tweets', { method: 'GET'})
       .then((tweetsData) => {
         renderTweets(tweetsData);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   $('#error-message').hide();
@@ -87,11 +90,14 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: '/tweets',
-      data: data,
-      success: () => {
-        hideError();
-        loadTweets();
-      }
+      data: data
+    })
+    .then(() => {
+      hideError();
+      loadTweets();
+    })
+    .catch((err) => {
+      console.log(err);
     });
 
     //clear text area, reset counter, empty tweetfeed (reloads async if submission success)
