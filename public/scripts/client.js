@@ -51,6 +51,16 @@ const hideError = function() {
   $('#error-message').slideUp('fast');
 }
 
+const getLatestTweet = function() {
+  return $.ajax('/tweets', { method: 'GET'})
+    .then((tweetsData) => {
+      return tweetsData[tweetsData.length - 1];
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 //DOCUMENT.READY
 
 $(document).ready(function() {
@@ -93,7 +103,11 @@ $(document).ready(function() {
     })
     .then(() => {
       hideError();
-      loadTweets();
+      return getLatestTweet();
+    })
+    .then((tweet) => {
+      const newTweet = createTweetElement(tweet);
+      $('#tweets-container').prepend(newTweet);
     })
     .catch((err) => {
       console.log(err);
@@ -102,6 +116,5 @@ $(document).ready(function() {
     //clear text area, reset counter, empty tweetfeed (reloads async if submission success)
     $('textarea').val('');
     $('#char-counter').html('140');
-    $('#tweets-container').html('');
   });
 });
