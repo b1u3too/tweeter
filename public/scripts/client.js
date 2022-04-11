@@ -15,30 +15,29 @@ const escape = function(str) {
 function createTweetElement(tweetData) {
   return `
   <article>
-  <header>
-    <div class="user-markers">
-      <img src=${tweetData.user.avatars}>
-      <p>${tweetData.user.name}</p>
-    </div>
-    <p>${tweetData.user.handle}</p>
-  </header>
-  <p class="tweet-content">${escape(tweetData.content.text)}</p> 
-  <footer>
-    <p>${timeago.format(tweetData.created_at)}</p>
-    <div class="icon-buttons">
-      <i class="fa-solid fa-flag"></i>
-      <i class="fa-solid fa-retweet"></i>
-      <i class="fa-solid fa-heart"></i>
-    </div>
-  </footer>
+    <header>
+      <div class="user-markers">
+        <img src=${tweetData.user.avatars}>
+        <p>${tweetData.user.name}</p>
+      </div>
+      <p>${tweetData.user.handle}</p>
+    </header>
+    <p class="tweet-content">${escape(tweetData.content.text)}</p> 
+    <footer>
+      <p>${timeago.format(tweetData.created_at)}</p>
+      <div class="icon-buttons">
+        <i class="fa-solid fa-flag"></i>
+        <i class="fa-solid fa-retweet"></i>
+        <i class="fa-solid fa-heart"></i>
+      </div>
+    </footer>
   </article>
   `
 };
 
 const renderTweets = function(tweets) {
-  const tweetRevChronOrder = tweets.reverse();
-  for (const tweet of tweetRevChronOrder) {
-    $('#tweets-container').append(createTweetElement(tweet));
+  for (const tweet of tweets) {
+    $('#tweets-container').prepend(createTweetElement(tweet));
   }
 };
 
@@ -52,6 +51,16 @@ const hideError = function() {
   $('#error-message').slideUp('fast');
 }
 
+const getLatestTweet = function() {
+  return $.ajax('/tweets', { method: 'GET'})
+    .then((tweetsData) => {
+      return tweetsData[tweetsData.length - 1];
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 //DOCUMENT.READY
 
 $(document).ready(function() {
@@ -59,6 +68,9 @@ $(document).ready(function() {
     $.ajax('/tweets', { method: 'GET'})
       .then((tweetsData) => {
         renderTweets(tweetsData);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   $('#error-message').hide();
@@ -71,13 +83,13 @@ $(document).ready(function() {
 
     //alert error if empty tweet submitted
     if (newTweet.trim().length === 0) {
-      let err = new Error("Your tweet needs to have at least one character please try again");
+      const err = new Error("Your tweet needs to have at least one character please try again");
       showError(err);
       return;
     }
     //alert error if too long of a tweet is submitted
     if (newTweet.length > 140) {
-      let err = new Error("Your tweet needs to be 140 characters or fewer, please try again");
+      const err = new Error("Your tweet needs to be 140 characters or fewer, please try again");
       showError(err);
       return;
     }
@@ -87,16 +99,22 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: '/tweets',
-      data: data,
-      success: () => {
-        hideError();
-        loadTweets();
-      }
+      data: data
+    })
+    .then(() => {
+      hideError();
+      return getLatestTweet();
+    })
+    .then((tweet) => {
+      const newTweet = createTweetElement(tweet);
+      $('#tweets-container').prepend(newTweet);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 
     //clear text area, reset counter, empty tweetfeed (reloads async if submission success)
     $('textarea').val('');
     $('#char-counter').html('140');
-    $('#tweets-container').html('');
   });
 });
